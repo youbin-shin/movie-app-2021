@@ -1,20 +1,36 @@
 import React from 'react'
 
-function Youbin(props) {
+function Youbin({name, degree}) {
   return (
       <div>
-          <h3>I like { props.fav }. 정도는 {props.degree}</h3>
+          <h3>I like { name }. degree: { degree }</h3>
       </div>
   )
 }
 
+const foods = [
+  {
+    name: "a",
+    degree: "1"
+  },
+  {
+    name: "b", 
+    degree: "2"
+  },
+  {
+    name: "c",
+    degree: "3"
+  },
+  {
+    name: "d",
+    degree: "4"
+  }
+]
 
 function App() {
   return (
     <div>
-      <h1>Hello</h1>
-      <Youbin fav="kickek" degree="so much"/>
-      <Youbin fav="ramen" degree="medium"/>
+      {foods.map(food => <Youbin name={food.name} degree={food.degree}/>)}
     </div>
   );
 }
