@@ -1,49 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import axios from 'axios';
 
-function Youbin({name, degree}) {
-  return (
-      <div>
-          <h3>I like { name }. degree: { degree }</h3>
-      </div>
-  )
-}
-
-Youbin.propTypes = {
-  name: PropTypes.string.isRequired,
-  degree: PropTypes.number.isRequired
-}
-
-const foods = [
-  {
-    id: 1, 
-    name: "a",
-    degree: 1
-  },
-  {
-    id: 2,
-    name: "b", 
-    degree: 2
-  },
-  {
-    id: 3, 
-    name: "c",
-    degree: 3
-  },
-  {
-    id: 4,
-    name: "d",
-    degree: 4
+class App extends React.Component {
+  state = {
+    isLoading: true,
+    movies: []
+  };
+  getMovies = async () => {
+    const {data: {data: {movies}}} = await axios.get("https://yts-proxy.now.sh/list_movies.json")
+    this.setState({ movies, isLoading: false })
+  };
+  componentDidMount() {
+    this.getMovies();
   }
-]
-
-
-function App() {
-  return (
-    <div>
-      {foods.map((food) => <Youbin key={food.id} name={food.name} degree={food.degree}/> )}
-    </div>
-  );
+  render() {
+    const { isLoading } = this.state
+    return (
+      <div>{isLoading? "Loading..." : "Ready now"}</div>
+    )
+  }
 }
+
 
 export default App;
