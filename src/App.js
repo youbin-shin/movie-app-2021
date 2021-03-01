@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function Youbin({name, degree}) {
   return (
@@ -8,26 +9,31 @@ function Youbin({name, degree}) {
   )
 }
 
+Youbin.propTypes = {
+  name: PropTypes.string.isRequired,
+  degree: PropTypes.number.isRequired
+}
+
 const foods = [
   {
     id: 1, 
     name: "a",
-    degree: "1"
+    degree: 1
   },
   {
     id: 2,
     name: "b", 
-    degree: "2"
+    degree: 2
   },
   {
     id: 3, 
     name: "c",
-    degree: "3"
+    degree: 3
   },
   {
     id: 4,
     name: "d",
-    degree: "4"
+    degree: 4
   }
 ]
 
